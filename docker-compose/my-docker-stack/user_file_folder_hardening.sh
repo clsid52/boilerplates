@@ -1,4 +1,4 @@
-# This is the first guide notes to produce a bash script to harden user,file,folder,permissions, this is not full made ### IS is only notes ### don't run it
+# This is the first guide notes to produce a bash script to harden User/group/folders/files/firewall hardening,permissions, this is not full made ### IS is only notes ### don't run it
 
 ## Server configuration
 
@@ -56,10 +56,7 @@ See how to create [Linux service](linux-service.md) to start Diun automatically.
 DIUN_DB_PATH=/var/lib/diun/diun.db /usr/local/bin/diun serve --config /etc/diun/diun.yml
 ```
 
-## Updating to a new version
+## Firewall Hardning
 
-You can update to a new version of Diun by stopping it, replacing the binary at `/usr/local/bin/diun` and restarting
-the instance.
 
-If you have carried out the installation steps as described above, the binary should have the generic name `diun`. Do
-not change this, i.e. to include the version number.
+
