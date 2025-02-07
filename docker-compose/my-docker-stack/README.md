@@ -11,8 +11,8 @@
 - VPS Server ( 2vCPU + 8GBRAM, 100GB Nvme, 8TB BW ) - Hostinger VPS, KVM 2 - 6.99$/m x 24m period
 - APP Running ( Already Build it ### It Will be hard to do ### Nextjs 15 )
 - TLS - HTTPS - Autorenovate Certificate PEM Key ( Caddy Docker-Compose Example ) port 80, 443
-- Docker.io install / Podman install ( , probably will make a bash script to automate it)
-- Openssh-server hardening ( Ubuntu 24.04 LTS Server , probably will make a bash script to automate it)
+- Docker.io install / Podman install ( , user_file_folder_hardening.sh)
+- Openssh-server hardening ( Ubuntu 24.04 LTS Server , user_file_folder_hardening.sh)
 - User/group/folders/files/firewall hardening  ( Ubuntu 24.04 LTS Server,  user_file_folder_hardening.sh) 
 - Load Balancer - HA ( Using Docker Deploy Method ) or several servers with several DNS
 - Automated Deploys Docker Containers (https://github.com/containrrr/watchtower)
