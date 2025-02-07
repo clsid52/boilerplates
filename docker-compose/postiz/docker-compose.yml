@@ -1,32 +1,80 @@
+version: '3.9'
+
 services:
-  postiz-postgres:
+  db:
     image: postgres:16-alpine 
-    container_name: postiz-postgres
-    restart: unlessstoped
+    container_name: db_postiz
+    restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: postiz-local-pwd
-      POSTGRES_USER: postiz-local
-      POSTGRES_DB: postiz-db-local
+      POSTGRES_DB: postiz
+      POSTGRES_USER: postiz
+      POSTGRES_PASSWORD: ${DOCMOST_DB_PASSWORD}
+    healthcheck:
+      test: [ "CMD", "pg_isready -U postiz -d postiz" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
-      - postgres-volume:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:
       - app-postiz
-  
-  postiz-redis:
-    image: redis:7-alpine 
-    container_name: postiz-redis
-    restart: always
+
+   postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    container_name: postiz
+    depends_on:
+      - db : 
+        condition: service_healthy
+      - redis:
+        condition: service_healthy
+    restart: unless-stopped
+    environment:
+      MAIN_URL: "https://postiz.your-server.com"
+      FRONTEND_URL: "https://postiz.your-server.com"
+      NEXT_PUBLIC_BACKEND_URL: "https://postiz.your-server.com/api"
+      JWT_SECRET: "random string that is unique to every install - just type random characters here!"
+      # These are totally fake values, you must change them with your own Cloudflare R2 settings.
+      CLOUDFLARE_ACCOUNT_ID: "QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu"
+      CLOUDFLARE_ACCESS_KEY: "dcfCMSuFEeCNfvByUureMZEfxWJmDqZe"
+      CLOUDFLARE_SECRET_ACCESS_KEY: "zTTMXBmtyLPwHEdpACGHgDgzRTNpTJewiNriLnUS"
+      CLOUDFLARE_BUCKETNAME: "postiz"
+      CLOUDFLARE_BUCKET_URL: "https://QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu.r2.cloudflarestorage.com/"
+      CLOUDFLARE_REGION: "auto"
+      BACKEND_INTERNAL_URL: "http://localhost:3000/"
+      IS_GENERAL: "true" 
+      APP_URL: 'http://localhost:3000'
+      DATABASE_URL: 'postgresql://postiz:${DOCMOST_DB_PASSWORD}@db:5432/postiz?schema=public' 
+      REDIS_URL: 'redis://redis:6379'
     ports:
-      - 6379:6379
+      - "5000:5000"
+    volumes:
+      - postiz:/app/data/storage
     networks:
       - app-postiz
-  volumes:
-  redisinsight:
-  postgres-volume:
-    external: false
   
-  networks:
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli ping" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - app-postiz
+      
+volumes:
+  postiz:
+  db_data:
+  redis_data:
+
+networks:
   app-postiz:
-    external: false
+    driver: bridge
