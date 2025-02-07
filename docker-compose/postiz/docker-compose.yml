@@ -2,7 +2,7 @@ services:
   postiz-postgres:
     image: postgres:16-alpine 
     container_name: postiz-postgres
-    restart: always
+    restart: unlessstoped
     environment:
       POSTGRES_PASSWORD: postiz-local-pwd
       POSTGRES_USER: postiz-local
@@ -13,6 +13,7 @@ services:
       - 5432:5432
     networks:
       - app-postiz
+  
   postiz-redis:
     image: redis:7-alpine 
     container_name: postiz-redis
