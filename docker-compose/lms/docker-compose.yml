@@ -1,0 +1,25 @@
+version: '3.9'  
+
+services:
+  lms:
+    image: epoupon/lms:3.63.0
+    container_name: lms
+    restart: unless-stopped
+    user: "${LMS_USER}:${LMS_GROUP}"
+    volumes:
+      - lms_data:/var/lms
+      - lms_music:/music
+      - lms_conf:/usr/local/etc
+    ports:
+      - "5082:5082"
+    networks:
+      - app-lms
+
+volumes:
+  lms_data:
+  lms_music:
+  lms_conf:
+
+networks:
+  app-lms:
+    driver: bridge
