@@ -1,2 +1,3 @@
 - https://www.digitalocean.com/community/tutorials/how-to-automatically-update-docker-container-images-with-watchtower-on-ubuntu-22-04
 - https://containrrr.dev/watchtower/
+- https://github.com/containrrr/watchtower/blob/main/docker-compose.yml
