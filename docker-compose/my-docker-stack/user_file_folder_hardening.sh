@@ -60,7 +60,11 @@ DIUN_DB_PATH=/var/lib/diun/diun.db /usr/local/bin/diun serve --config /etc/diun/
 
 ## Docker.io install / Podman install
 
-## Openssh-server hardening && SSH Keygen PEM Key
+## Openssh-server hardening && SSH Keygen 
+- root strong pass 14 
+- ssh keygen cmd: ssh-keygen -t ed25519 -C  # After run, the file .pub this is located at c:\users\<your_username>\.ssh\id_ed25519\ # open it and copy all contents 
+- add user '<app_name>' in root profile, cmd adduser <app_name>
+https://youtu.be/F-9KWQByeU0?t=376
 
 
 
