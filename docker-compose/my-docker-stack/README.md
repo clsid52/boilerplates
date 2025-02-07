@@ -13,7 +13,7 @@
 - TLS - HTTPS - Autorenovate Certificate PEM Key ( Caddy Docker-Compose Example ) port 80, 443
 - Docker.io install / Podman install ( , probably will make a bash script to automate it)
 - Openssh-server hardening ( Ubuntu 24.04 LTS Server , probably will make a bash script to automate it)
-- User/group/folders/files/firewall hardening  ( Ubuntu 24.04 LTS Server,  probably will make a bash script to automate it) 
+- User/group/folders/files/firewall hardening  ( Ubuntu 24.04 LTS Server,  user_file_folder_hardening.sh) 
 - Load Balancer - HA ( Using Docker Deploy Method ) or several servers with several DNS
 - Automated Deploys Docker Containers (https://github.com/containrrr/watchtower)
 - Monitoring the server cpu-ram-hdd-docker/bw/app/domain/ssl/others (Build APP ### It Will be hard to do ### GOLang ) see example of diun or https://uptimerobot.com ( saas service to monitor )
