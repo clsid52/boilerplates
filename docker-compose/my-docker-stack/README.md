@@ -15,5 +15,5 @@
 - Openssh-server hardening ( Ubuntu 24.04 LTS Server , probably will make a bash script to automate it)
 - User/group/folders/files/firewall hardening  ( Ubuntu 24.04 LTS Server,  probably will make a bash script to automate it) 
 - Load Balancer - HA ( Using Docker Deploy Method ) or several servers with several DNS
-- Automated Deploys Docker Registry (https://github.com/crazy-max/diun) or (https://github.com/containrrr/watchtower)
+- Automated Deploys Docker Containers (https://github.com/containrrr/watchtower)
 - Monitoring the server cpu-ram-hdd-docker/bw/app/domain/ssl/others (Build APP ### It Will be hard to do ### GOLang ) see example of diun or https://uptimerobot.com ( saas service to monitor )
