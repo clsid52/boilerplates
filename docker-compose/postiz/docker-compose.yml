@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: postiz
       POSTGRES_PASSWORD: ${DOCMOST_DB_PASSWORD}
     healthcheck:
-      test: [ "CMD", "pg_isready -U postiz -d postiz" ]
+      test: pg_isready -U postiz -d postiz
       interval: 10s
       timeout: 5s
       retries: 5
