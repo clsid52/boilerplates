@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  caddy:
+    image: caddy/caddy:2.9.1-alpine 
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile # Mount Caddyfile from . to caddy:2.9.1-alpine docker_volume # You much change Caddyfile for your domains, if not it will run with error in the logs
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app_caddy
+networks:
+  app_caddy:
+    driver: overlay
+
+volumes:
+  caddy_data:
+  caddy_config:
