@@ -1,1 +1,2 @@
-https://anasdidi.dev/articles/200713-docker-compose-postgres/
+- https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
+- https://anasdidi.dev/articles/200713-docker-compose-postgres/
