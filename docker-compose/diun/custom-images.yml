@@ -1,0 +1,9 @@
+# /custom-images.yml
+- name: ghcr.io/crazy-max/diun
+- name: alpine
+- name: debian:stretch-slim
+- name: nginx:stable-alpine
+- name: traefik
+  watch_repo: true
+  include_tags:
+    - ^\d+\.\d+\..*
