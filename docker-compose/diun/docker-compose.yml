@@ -10,7 +10,7 @@ services:
       - "./custom-images.yml:/custom-images.yml:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
     environment:
-      - "TZ=Europe/Paris"
+      - "TZ=Europe/Lisbon"
       - "LOG_LEVEL=info"
       - "LOG_JSON=false"
       - "DIUN_WATCH_WORKERS=20"
