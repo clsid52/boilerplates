@@ -1,0 +1,8 @@
+<your subdomain.com> {
+    reverse_proxy <your server ip>:<port> 
+}
+
+# This is an real example
+# zammad.gutricious.com {
+#    reverse_proxy 95.217.3.89:3000 }
+#
