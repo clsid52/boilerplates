@@ -34,21 +34,19 @@ services:
       MAIN_URL: "https://postiz.your-server.com"
       FRONTEND_URL: "https://postiz.your-server.com"
       NEXT_PUBLIC_BACKEND_URL: "https://postiz.your-server.com/api"
-      JWT_SECRET: "random string that is unique to every install - just type random characters here!"
-      # These are totally fake values, you must change them with your own Cloudflare R2 settings.
-      CLOUDFLARE_ACCOUNT_ID: "QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu"
-      CLOUDFLARE_ACCESS_KEY: "dcfCMSuFEeCNfvByUureMZEfxWJmDqZe"
-      CLOUDFLARE_SECRET_ACCESS_KEY: "zTTMXBmtyLPwHEdpACGHgDgzRTNpTJewiNriLnUS"
-      CLOUDFLARE_BUCKETNAME: "postiz"
-      CLOUDFLARE_BUCKET_URL: "https://QhcMSXQyPuMCRpSQcSYdEuTYgHeCXHbu.r2.cloudflarestorage.com/"
-      CLOUDFLARE_REGION: "auto"
-      BACKEND_INTERNAL_URL: "http://localhost:3000/"
+      JWT_SECRET: "random string that is unique to every install - just type random characters here!" #*
+      #* node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+      DATABASE_URL: "postgresql://postiz:${DOCMOST_DB_PASSWORD}@db:5432/postiz?schema=public"
+      REDIS_URL: "redis://redis:6379"
+      BACKEND_INTERNAL_URL: "http://localhost:3000"
       IS_GENERAL: "true" 
-      DATABASE_URL: 'postgresql://postiz:${DOCMOST_DB_PASSWORD}@db:5432/postiz?schema=public' 
-      REDIS_URL: 'redis://redis:6379'
+      STORAGE_PROVIDER: "local"
+      UPLOAD_DIRECTORY: "/uploads"
+      NEXT_PUBLIC_UPLOAD_DIRECTORY: "/uploads"
     ports:
       - "5000:5000"
     volumes:
+      - postiz-uploads:/uploads/
       - postiz:/config/
     networks:
       - app-postiz
@@ -62,7 +60,7 @@ services:
     ports:
       - 6379:6379
     healthcheck:
-      test: [ "CMD", "redis-cli ping" ]
+      test: redis-cli ping
       interval: 10s
       timeout: 3s
       retries: 3
@@ -70,12 +68,14 @@ services:
       - app-postiz
       
 volumes:
+  postiz-uploads:
+    external: false
   postiz:
-     external: false
+    external: false
   db_data:
-     external: false
+    external: false
   redis_data:
-     external: false
+    external: false
 
 networks:
   app-postiz:
