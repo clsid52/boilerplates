@@ -1,0 +1,31 @@
+services:
+  postiz-postgres:
+    image: postgres:16-alpine 
+    container_name: postiz-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postiz-local-pwd
+      POSTGRES_USER: postiz-local
+      POSTGRES_DB: postiz-db-local
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - app-postiz
+  postiz-redis:
+    image: redis:7-alpine 
+    container_name: postiz-redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - app-postiz
+  volumes:
+  redisinsight:
+  postgres-volume:
+    external: false
+  
+  networks:
+  app-postiz:
+    external: false
