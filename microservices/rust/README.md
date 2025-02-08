@@ -3,6 +3,7 @@
 # This repo is part of a blog post which looks into different Rust frameworks.
 
 - https://starstorm.dev/post/rust-webframeworks/
+- https://medium.com/@rs4528090/rust-web-frameworks-a-comprehensive-comparison-58f94113f864
 
 # Usage
 
