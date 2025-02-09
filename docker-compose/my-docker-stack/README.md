@@ -2,6 +2,7 @@
 
 # Docker-Compose Source File from:
 - https://github.com/dreamsofcode-io/guestbook/blob/main/docker-stack.yaml
+- https://github.com/dreamsofcode-io/zenstats/blob/main/docs/vps-setup.md
 
 - YTV: https://www.youtube.com/watch?v=F-9KWQByeU0
 - YTV: https://www.youtube.com/watch?v=fuZoxuBiL9o
