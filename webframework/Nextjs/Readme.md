@@ -1,1 +1,1 @@
-Boilerplate for Nextjs15
+Boilerplate for Nextjs
